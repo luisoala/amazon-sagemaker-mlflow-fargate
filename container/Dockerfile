@@ -11,5 +11,6 @@ EXPOSE 5000
 CMD mlflow server \
     --host 0.0.0.0 \
     --port 5000 \
+    --app-name basic-auth \
     --default-artifact-root ${BUCKET} \
     --backend-store-uri mysql+pymysql://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DATABASE}
