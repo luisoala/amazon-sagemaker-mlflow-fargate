@@ -13,5 +13,5 @@ CMD mlflow server \
     --port 5000 \
     --app-name basic-auth \
     --default-artifact-root ${BUCKET} \
-    --backend-store-uri mysql+pymysql://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DATABASE}
-    sed -i 's/default_permission = READ/default_permission = NO_PERMISSIONS/' mlflow/server/auth/basic_auth.ini
+    --backend-store-uri mysql+pymysql://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DATABASE} \
+    && sed -i 's/default_permission = READ/default_permission = NO_PERMISSIONS/' mlflow/server/auth/basic_auth.ini
