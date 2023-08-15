@@ -8,11 +8,11 @@ RUN pip install \
 
 EXPOSE 5000
 
-CMD mlflow server \
+CMD wget https://raw.githubusercontent.com/luisoala/amazon-sagemaker-mlflow-fargate/main/basic_auth.ini \
+    && export MLFLOW_AUTH_CONFIG_PATH="${PWD}/basic_auth.ini" \
+    && mlflow server \
     --host 0.0.0.0 \
     --port 5000 \
     --app-name basic-auth \
     --default-artifact-root ${BUCKET} \
-    --backend-store-uri mysql+pymysql://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DATABASE} \
-    && sed -i 's/default_permission = READ/default_permission = NO_PERMISSIONS/' mlflow/server/auth/basic_auth.ini \
-    && cat mlflow/server/auth/basic_auth.ini
+    --backend-store-uri mysql+pymysql://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DATABASE}
